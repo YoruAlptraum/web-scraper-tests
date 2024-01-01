@@ -20,20 +20,19 @@ os.makedirs(directory_path, exist_ok=True)
 
 # Iterate through the table rows
 for table in tables[1:]:
-    for row in table.find('tbody').find_all('tr')[1:]:
-        if len(row) < 1:
-            continue
-        
-        image_tag = row.find('td').find('a').find('img')
+    for image in table.find_all('a', {'class':'image'}):        
+        if not (image_src:= image.find('img').get('data-src')):
+            image_src = image.find('img').get('src')
+                
+        img_title = image.find_next_sibling().get('title')
+        print(img_title)
 
-        if image_tag:
-            image_url = image_tag.get('data-src')
-            if image_url:
-                img_title = (row.find('td').find_all('a')[1].get('title'))
-                image_name = re.sub(r'[^a-zA-Z0-9]', '', img_title) + '.png'
-                # Download the image
-                # print(os.path.join(directory_path, image_name))
-                urllib.request.urlretrieve(image_url, os.path.join(directory_path, image_name))
+        image_name = re.sub(r'[^a-zA-Z0-9]', '', img_title) + '.png'
+        # Download the image
+        # print(os.path.join(directory_path, image_name))
+        urllib.request.urlretrieve(image_src, os.path.join(directory_path, image_name))
 
 
-print("Images downloaded successfully peko!")
+print("Images finished downloading peko!")
+
+
