@@ -7,5 +7,5 @@ Extracting data from website to Excel file
 
 Result of the Guide exporting information form fandom wiki to steam
 
-![Result Guide](https://github.com/YoruAlptraum/web-scraper-tests/blob/main/resources/steam_guide)
+![Result Guide](https://github.com/YoruAlptraum/web-scraper-tests/blob/main/resources/steam_guide.png)
 
